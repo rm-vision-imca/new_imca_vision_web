@@ -33,7 +33,7 @@
 
 .. code-block:: bash
 
-   :del:docker attach rv_runtime_autoStart~~
+   <s>docker attach rv_runtime_autoStart~~</s>
 
    cd ${workspace} # workspace改为ros2代码存放根目录
    bash rv.start.sh 
@@ -47,11 +47,11 @@
 
 .. code-block:: bash
 
-   :del:docker start rv_runtime_fox
-   :del:docker attach rv_runtime_fox
-   :del:#有可能存在rv_runtime_fox不存在的情况，因为目前视觉关于这个的命名并未统一
-   :del:#可以使用以下指令查看具体名字
-   :del:docker ps -a
+   <s>docker start rv_runtime_fox
+   docker attach rv_runtime_fox
+   #有可能存在rv_runtime_fox不存在的情况，因为目前视觉关于这个的命名并未统一
+   #可以使用以下指令查看具体名字
+   docker ps -a</s>
    #在项目文件夹内内打开终端
    source install/setup.bash
    ros2 launch foxglove_bridge foxglove_bridge_launch.xml 
@@ -63,9 +63,9 @@
      :width: 600 px
 
 
-其中``/serial/receive``为电控发给视觉的imu以及识别所需参数
+其中``serial/receive``为电控发给视觉的imu以及识别所需参数
 
-``/armor_solver/cmd_gimbal``为armor_solver节点对识别到二维坐标处理完成后发给电控的云台绝对角度
+``armor_solver/cmd_gimbal``为armor_solver节点对识别到二维坐标处理完成后发给电控的云台绝对角度
 
 ``tracker/target`` 是视觉滤波结果,调试时具有重要参考意义
 
