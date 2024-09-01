@@ -33,7 +33,7 @@
 
 .. code-block:: bash
 
-   <s>docker attach rv_runtime_autoStart~~</s>
+   <del>docker attach rv_runtime_autoStart</del>
 
    cd ${workspace} # workspace改为ros2代码存放根目录
    bash rv.start.sh 
@@ -47,11 +47,13 @@
 
 .. code-block:: bash
 
-   <s>docker start rv_runtime_fox
+   <del>
+   docker start rv_runtime_fox
    docker attach rv_runtime_fox
    #有可能存在rv_runtime_fox不存在的情况，因为目前视觉关于这个的命名并未统一
    #可以使用以下指令查看具体名字
-   docker ps -a</s>
+   docker ps -a
+   </del>
    #在项目文件夹内内打开终端
    source install/setup.bash
    ros2 launch foxglove_bridge foxglove_bridge_launch.xml 
