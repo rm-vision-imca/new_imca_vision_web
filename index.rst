@@ -15,7 +15,7 @@ IMCA-VISION DOCUMENTATION是imca战队视觉组于24赛季创建并维护的robo
    :maxdepth: 1
    :hidden:
    
-   入门教程
-   quick-start
-   ros-co-simulation
+   root/introduction-tutorial
+   root/quick-start
+   root/ros-co-simulation
    

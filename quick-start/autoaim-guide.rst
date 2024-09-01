@@ -8,11 +8,11 @@
 
 * 视觉识别到一个敌人越久，预测就越准
 
-* 自身处在左右急速运动或急停，或者敌人左右急停时自瞄可能会甩飞
+* 自身处在左右急速运动或急停，或者敌人左右急停时自瞄可能会甩飞(原因:敌人状态从移动到急停的一瞬间，卡尔曼将会重新初始化以保证自身模型的稳定性)
 
 * 使用自瞄打击小陀螺时先锁住看1~2s再发弹，看的时间越久自瞄预测就越准
 
-* 对于在电容支持下高速陀螺或者移动的目标，可以等待几秒待其电容耗尽再打击
+* 对于在电容支持下高速陀螺或者移动的目标，可以等待几秒待其电容耗尽再打击(对于转速过快的目标将自己锁定在车辆装甲板中心)
 
 * 如果自瞄失效，或者目标常规移动命中率都极低，使用手瞄，将问题反馈给视觉
 
@@ -25,6 +25,7 @@
 
    所以也建议电控同学教会视觉同学对于遥控器或者客户端控制机器人的操作，以方便电控同学不在视觉也能对自瞄在车上进行调试。
 
+
 2.1. 关于自瞄的启动
 ~~~~~~~~~~~~~~~~~~~
 
@@ -32,7 +33,10 @@
 
 .. code-block:: bash
 
-   docker attach rv_runtime_autoStart
+   :del:docker attach rv_runtime_autoStart~~
+
+   cd ${workspace} # workspace改为ros2代码存放根目录
+   bash rv.start.sh 
 
 你将在终端看到串口的DEBUG信息，是不断刷新的绿色消息则自瞄启动正常
 
@@ -43,21 +47,27 @@
 
 .. code-block:: bash
 
-   docker start rv_runtime_fox
-   docker attach rv_runtime_fox
-   #有可能存在rv_runtime_fox不存在的情况，因为目前视觉关于这个的命名并未统一
-   #可以使用以下指令查看具体名字
-   docker ps -a
+   :del:docker start rv_runtime_fox
+   :del:docker attach rv_runtime_fox
+   :del:#有可能存在rv_runtime_fox不存在的情况，因为目前视觉关于这个的命名并未统一
+   :del:#可以使用以下指令查看具体名字
+   :del:docker ps -a
+   #在项目文件夹内内打开终端
+   source install/setup.bash
+   ros2 launch foxglove_bridge foxglove_bridge_launch.xml 
 
-打开foxglove端后你能看到以下内容
+
+打开foxglove端后你能看到类似以下内容
 
   .. image:: image/1.png
      :width: 600 px
 
 
-其中 ``aiming_point`` 是电控在接收到视觉预测信息后经过决策计算后准备打击的位置（云台准备瞄准的位置，这个位置是超前于现在位置的）这个位置会通过 ``marker`` 在三维窗口可视化成一个小球。
+其中``/serial/receive``为电控发给视觉的imu以及识别所需参数
 
-``tracker/target`` 是视觉滤波结果，如果出现自瞄失灵或者云台运动远远超出预期，应首先查看这个串口数据的变化符合不符合预期。
+``/armor_solver/cmd_gimbal``为armor_solver节点对识别到二维坐标处理完成后发给电控的云台绝对角度
+
+``tracker/target`` 是视觉滤波结果,调试时具有重要参考意义
 
 ``三维`` 这个窗口是对自己和目标的可视化建模，两个坐标系分别是 ``odom`` 坐标系(在最下面)， ``相机`` 坐标系(在上面)，四块装甲板是目标装甲板位置。视觉发送的所有坐标都在"odom"坐标系下。
 
@@ -68,7 +78,7 @@
 2.3. 关于打击静态目标，距离不同打高打低的问题
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
-应先将电控视觉处理部分的弹道补偿函数注释掉使其无效，再修改pc上的home目录下的 ``/ros_ws/src/rm_vision/rm_vision_bringup/config/launch_params.yaml`` 与 ``/ros_ws/src/rm_gimbal_description/urdf
+修改pc上的home目录下的 ``/{workspace}/src/rm_bringup/config/launch_params.yaml`` 与 ``/ros_ws/src/rm_gimbal_description/urdf
 /rm_gimbal.urdf.xacro`` 路径内的"rpy"部分为 “0 0 0” 如下图
 
   .. image:: image/2.png
@@ -77,11 +87,15 @@
   .. image:: image/3.png
      :width: 600 px
 
-此时进入运行代码的终端按下 ``CTRL + C`` 然后重复 ``docker attach rv_runtime_autoStart`` 这个指令，然后打击不同距离的静态目标，检查是打低还是打高，如果打低则调整 "rpy" 的 "p" 为负
-，打高则反之。例如打低 则调整为   rpy: "\"0.0  -0.002  0.0\"" ，当打击2~3米目标稳定后加入弹道补偿模型打击更远处目标调整阻力系数，如果更远处目标偏低则增加阻力系数。
+然后修改串口包(rm_serial_driver)中的infantry_protocol.cpp,将其中的tmp_pitch改为固定值0，
+后进入robomaster选手客户端使得云台pitch固定到绝对0点，
+后用其余工具测量枪管上的pitch角，如果不为0则将其测得的误差放进rpy中的第二个参数，
+以此迭代出正确的参数。
 
 
-2024.4.10 Shakima
+2024.4.10 Shakima first commit
+2024.9.1 123456dfg changed
+
 
 
 .. contents:: Table of Contents

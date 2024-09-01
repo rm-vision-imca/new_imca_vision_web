@@ -7,14 +7,17 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'IMCA-VISION_DOCUMENTATION'
-copyright = '2024, Shakima'
-author = 'Shakima'
-release = 'v1.1'
+copyright = '2024, IMCA_VISION'
+author = 'IMCA_VISION'
+release = 'v1.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = ['sphinxnotes.strike',
+                # 添加 mathjax 扩展
+              'sphinx.ext.mathjax', 
+                ]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']

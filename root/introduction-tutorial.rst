@@ -22,6 +22,6 @@
    :hidden:
    :glob:
    
-   入门教程/base-learning
-   入门教程/advanced-teaching
+   introduction-tutorial/base-learning
+   introduction-tutorial/advanced-teaching
 
