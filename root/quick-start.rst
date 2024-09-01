@@ -13,4 +13,4 @@
    :glob:
    
    quick-start/autoaim-guide
-
+   quick-start/runeaim-guide
