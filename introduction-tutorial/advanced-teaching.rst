@@ -19,5 +19,6 @@
    :hidden:
    :glob:
    
-   advanced-teaching/install-opencv
+   advanced-teaching/opencv
+   advanced-teaching/openvino
    advanced-teaching/kalman_filter

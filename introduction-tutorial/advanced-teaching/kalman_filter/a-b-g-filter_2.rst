@@ -45,6 +45,6 @@
 
 
 .. contents:: Table of Contents
-   :depth: 3
+   :depth: 1
    :local:
    
