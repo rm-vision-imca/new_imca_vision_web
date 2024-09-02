@@ -15,6 +15,7 @@ release = 'v1.2'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ['sphinx.ext.mathjax', 
+              'sphinx_markdown_tables',
                 ]
 
 templates_path = ['_templates']
