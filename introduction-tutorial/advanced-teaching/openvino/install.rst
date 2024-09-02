@@ -2,7 +2,7 @@ openvino的安装
 ==================
 
 
-* `官方教程(英文好的建议直接看) <https://docs.openvino.ai/2024/get-started/install-openvino/install-openvino-archive-windows.html>`
+* `官方教程(英文好的建议直接看) <https://docs.openvino.ai/2024/get-started/install-openvino/install-openvino-archive-windows.html>`__
   
 非官方中文教程
 ----------------------

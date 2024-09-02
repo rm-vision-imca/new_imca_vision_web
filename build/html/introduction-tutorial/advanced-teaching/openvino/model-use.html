@@ -22,7 +22,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../../../genindex.html" />
     <link rel="search" title="搜索" href="../../../search.html" />
-    <link rel="next" title="卡尔曼滤波" href="../kalman_filter.html" />
+    <link rel="next" title="模型训练与导出" href="../model-training.html" />
     <link rel="prev" title="openvino的使用" href="use.html" /> 
 </head>
 
@@ -56,6 +56,7 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">模型的使用</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../model-training.html">模型训练与导出</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../kalman_filter.html">卡尔曼滤波</a></li>
 </ul>
 </li>
@@ -93,7 +94,29 @@
              
   <section id="id1">
 <h1>模型的使用<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>TODO</p>
+<section id="openvinoonnxir-python">
+<h2>使用OpenVino将onnx模型转换成ir模型(python)<a class="headerlink" href="#openvinoonnxir-python" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.openvino.ai/2024/openvino-workflow/model-preparation/convert-model-onnx.html">官方文档</a></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openvino</span> <span class="k">as</span> <span class="nn">ov</span>
+<span class="n">ov</span><span class="o">.</span><span class="n">convert_model</span><span class="p">(</span><span class="s1">&#39;your_model_file.onnx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="openvinoptir-python">
+<h2>使用OpenVino将pt模型转换成ir模型(python)<a class="headerlink" href="#openvinoptir-python" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.openvino.ai/2024/openvino-workflow/model-preparation/convert-model-pytorch.html">官方文档</a></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">openvino</span> <span class="k">as</span> <span class="nn">ov</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">resnet50</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s1">&#39;DEFAULT&#39;</span><span class="p">)</span>
+<span class="n">ov_model</span> <span class="o">=</span> <span class="n">ov</span><span class="o">.</span><span class="n">convert_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -101,7 +124,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
         <a href="use.html" class="btn btn-neutral float-left" title="openvino的使用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="../kalman_filter.html" class="btn btn-neutral float-right" title="卡尔曼滤波" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../model-training.html" class="btn btn-neutral float-right" title="模型训练与导出" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
