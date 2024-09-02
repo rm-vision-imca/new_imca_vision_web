@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10. 规则特例 &mdash; IMCA-VISION_DOCUMENTATION v1.2 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=7fb3a1ff"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="进阶" href="../../advanced-teaching.html" />
+    <link rel="prev" title="9. 格式" href="formatting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            IMCA-VISION_DOCUMENTATION
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../root/introduction-tutorial.html">教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../base-learning.html">入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ubuntu-install.html">Ubuntu (22.04版本)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../start-in-ubuntu.html">开始使用Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPN.html">关于vpn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../the-IDE.html">IDE的安装和配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cmake-tool.html">cmake安装和基本使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../git-and-github.html">Git和github</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../C%2B%2B-style-guide.html">c++代码风格规范</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="headers.html">1. 头文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scoping.html">2. 作用域</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classes.html">3. 类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="functions.html">4. 函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="magic.html">5. 来自 Google 的奇技</a></li>
+<li class="toctree-l4"><a class="reference internal" href="others.html">6. 其他 C++ 特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="naming.html">7. 命名约定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="comments.html">8. 注释</a></li>
+<li class="toctree-l4"><a class="reference internal" href="formatting.html">9. 格式</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">10. 规则特例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../advanced-teaching.html">进阶</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../root/quick-start.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../root/ros-co-simulation.html">ros联合仿真</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">IMCA-VISION_DOCUMENTATION</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../root/introduction-tutorial.html">教程</a></li>
+          <li class="breadcrumb-item"><a href="../../base-learning.html">入门</a></li>
+          <li class="breadcrumb-item"><a href="../C%2B%2B-style-guide.html">c++代码风格规范</a></li>
+      <li class="breadcrumb-item active">10. 规则特例</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>10. 规则特例<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>前面说明的编程习惯基本都是强制性的. 但所有优秀的规则都允许例外, 这里就是探讨这些特例.</p>
+<section id="id2">
+<h2>10.1. 现有不合规范的代码<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><strong>总述</strong></p>
+<p>对于现有不符合既定编程风格的代码可以网开一面.</p>
+<p><strong>说明</strong></p>
+<p>当你修改使用其他风格的代码时, 为了与代码原有风格保持一致可以不使用本指南约定. 如果不放心, 可以与代码原作者或现在的负责人员商讨. 记住, <em>一致性</em> 也包括原有的一致性.</p>
+</section>
+<section id="windows">
+<span id="windows-code"></span><h2>10.2. Windows 代码<a class="headerlink" href="#windows" title="Link to this heading"></a></h2>
+<p><strong>总述</strong></p>
+<p>Windows 程序员有自己的编程习惯, 主要源于 Windows 头文件和其它 Microsoft 代码. 我们希望任何人都可以顺利读懂你的代码, 所以针对所有平台的 C++ 编程只给出一个单独的指南.</p>
+<p><strong>说明</strong></p>
+<p>如果你习惯使用 Windows 编码风格, 这儿有必要重申一下某些你可能会忘记的指南:</p>
+<ul class="simple">
+<li><p>不要使用匈牙利命名法 (比如把整型变量命名成 <code class="docutils literal notranslate"><span class="pre">iNum</span></code>). 对源文件使用 <code class="docutils literal notranslate"><span class="pre">.cpp</span></code> 扩展名.</p></li>
+<li><p>Windows 定义了很多原生类型的同义词 (YuleFox 注: 这一点, 我也很反感), 如 <code class="docutils literal notranslate"><span class="pre">DWORD</span></code>, <code class="docutils literal notranslate"><span class="pre">HANDLE</span></code> 等等. 在调用 Windows API 时这是完全可以接受甚至鼓励的. 即使如此, 还是尽量使用原有的 C++ 类型, 例如使用 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">TCHAR</span> <span class="pre">*</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">LPCTSTR</span></code>.</p></li>
+<li><p>使用 Microsoft Visual C++ 进行编译时, 将警告级别设置为 3 或更高, 并将所有警告(warnings)当作错误(errors)处理.</p></li>
+<li><p>不要使用 <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">once</span></code>; 而应该使用 Google 的头文件保护规则. 头文件保护的路径应该相对于项目根目录 (Yang.Y 注: 如 <code class="docutils literal notranslate"><span class="pre">#ifndef</span> <span class="pre">SRC_DIR_BAR_H_</span></code>, 参考 <a class="reference internal" href="headers.html#define-guard"><span class="std std-ref">#define 保护</span></a> 一节).</p></li>
+<li><p>除非万不得已, 不要使用任何非标准的扩展, 如 <code class="docutils literal notranslate"><span class="pre">#pragma</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__declspec</span></code>. 使用 <code class="docutils literal notranslate"><span class="pre">__declspec(dllimport)</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__declspec(dllexport)</span></code> 是允许的, 但必须通过宏来使用, 比如 <code class="docutils literal notranslate"><span class="pre">DLLIMPORT</span></code> 和 <code class="docutils literal notranslate"><span class="pre">DLLEXPORT</span></code>, 这样其他人在分享使用这些代码时可以很容易地禁用这些扩展.</p></li>
+</ul>
+<p>然而, 在 Windows 上仍然有一些我们偶尔需要违反的规则:</p>
+<ul class="simple">
+<li><p>通常我们 <span class="xref std std-ref">禁止使用多重继承</span>, 但在使用 COM 和 ATL/WTL 类时可以使用多重继承. 为了实现 COM 或 ATL/WTL 类/接口, 你可能不得不使用多重实现继承.</p></li>
+<li><p>虽然代码中不应该使用异常, 但是在 ATL 和部分 STL（包括 Visual C++ 的 STL) 中异常被广泛使用. 使用 ATL 时, 应定义 <code class="docutils literal notranslate"><span class="pre">_ATL_NO_EXCEPTIONS</span></code> 以禁用异常. 你需要研究一下是否能够禁用 STL 的异常, 如果无法禁用, 可以启用编译器异常. (注意这只是为了编译 STL, 自己的代码里仍然不应当包含异常处理).</p></li>
+<li><p>通常为了利用头文件预编译, 每个每个源文件的开头都会包含一个名为 <code class="docutils literal notranslate"><span class="pre">StdAfx.h</span></code> 或 <code class="docutils literal notranslate"><span class="pre">precompile.h</span></code> 的文件. 为了使代码方便与其他项目共享, 请避免显式包含此文件 (除了在 <code class="docutils literal notranslate"><span class="pre">precompile.cc</span></code> 中), 使用 <code class="docutils literal notranslate"><span class="pre">/FI</span></code> 编译器选项以自动包含该文件.</p></li>
+<li><p>资源头文件通常命名为 <code class="docutils literal notranslate"><span class="pre">resource.h</span></code> 且只包含宏, 这一文件不需要遵守本风格指南.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="formatting.html" class="btn btn-neutral float-left" title="9. 格式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../../advanced-teaching.html" class="btn btn-neutral float-right" title="进阶" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024, IMCA_VISION。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

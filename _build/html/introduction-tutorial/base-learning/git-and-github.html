@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git和github &mdash; IMCA-VISION_DOCUMENTATION v1.2 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=7fb3a1ff"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="c++代码风格规范" href="C%2B%2B-style-guide.html" />
+    <link rel="prev" title="cmake安装和基本使用" href="cmake-tool.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            IMCA-VISION_DOCUMENTATION
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../root/introduction-tutorial.html">教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../base-learning.html">入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ubuntu-install.html">Ubuntu (22.04版本)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start-in-ubuntu.html">开始使用Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPN.html">关于vpn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="the-IDE.html">IDE的安装和配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmake-tool.html">cmake安装和基本使用</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Git和github</a></li>
+<li class="toctree-l3"><a class="reference internal" href="C%2B%2B-style-guide.html">c++代码风格规范</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced-teaching.html">进阶</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../root/quick-start.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../root/ros-co-simulation.html">ros联合仿真</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">IMCA-VISION_DOCUMENTATION</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../root/introduction-tutorial.html">教程</a></li>
+          <li class="breadcrumb-item"><a href="../base-learning.html">入门</a></li>
+      <li class="breadcrumb-item active">Git和github</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gitgithub">
+<h1>Git和github<a class="headerlink" href="#gitgithub" title="Link to this heading"></a></h1>
+<section id="git">
+<h2>1.Git<a class="headerlink" href="#git" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>1.1.关于Git<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Git 是一种分布式开源版本控制系统 (VCS)，我们可以用它存储代码、跟踪修订历史记录、合并代码更改，并在需要时恢复为较早的代码版本。</p>
+<p>Git 将我们的源代码及完整的开发历史记录存储在本地存储库中。我们可以创建称作分支的源代码副本，然后与主版本并行作业。完成作业后，我们可以提交更改以保存进度。也可以将分支合并回主版本。</p>
+</section>
+<section id="id2">
+<h3>1.2.安装和配置Git<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>使用指令安装</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">git</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>在Git中配置自己的名称和电子邮件地址</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;xxx&quot;</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s2">&quot;xxx@gmail.com&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>创建验证用的公钥，因为git是通过ssh的方式访问资源库的，所以需要在本地创建验证用的文件</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">C</span> <span class="s2">&quot;xxx@gmail.com&quot;</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span>
+</pre></div>
+</div>
+<p><strong>出现提示设置等直接回车就好</strong></p>
+<p>看到下图说明创建成功</p>
+<a class="reference internal image-reference" href="../../_images/24.png"><img alt="../../_images/24.png" src="../../_images/24.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>使用指令能看到创建的公钥</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/.ssh
+gedit<span class="w"> </span>id_rsa.pub
+</pre></div>
+</div>
+</section>
+</section>
+<section id="github">
+<h2>2.github<a class="headerlink" href="#github" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>2.1.关于github<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>GitHub是一个在线软件源代码托管服务平台，使用Git作为版本控制软件。
+是一个让大家可以把用 Git 这种版本管理工具管理的内容（项目、代码），能够集中在一起，互相交流、改进的社区。</p>
+<p>对于视觉组而言，创建视觉组的github仓库，可以在上面托管视觉代码，每个人都可以访问，方便协作，和版本管理等等。</p>
+</section>
+<section id="id4">
+<h3>2.2.注册<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>访问 <a class="reference external" href="https://github.com/">官网</a> 使用邮箱注册账号</p></li>
+<li><p>进入设置，ssh and GPG keys，点击 <strong>New SSH key</strong> 添加公钥</p></li>
+<li><p>将上面生成的公钥复制到里面</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/25.png"><img alt="../../_images/25.png" src="../../_images/25.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="../../_images/26.png"><img alt="../../_images/26.png" src="../../_images/26.png" style="width: 600px;" /></a>
+</section>
+</section>
+<section id="id5">
+<h2>3.使用Git管理github<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>开一个文件夹，进行Git的初始化</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>init
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Git的基本指令</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@xxx.xxx.xxx.xxx:group-name/projectname.git<span class="w">  </span><span class="c1"># 在github创建仓库后，使用其克隆仓库</span>
+git<span class="w"> </span>add<span class="w"> </span>.<span class="w">     </span><span class="c1"># 添加文件到暂存区</span>
+git<span class="w"> </span>commit<span class="w">    </span><span class="c1"># 将暂存区内容添加到仓库中</span>
+git<span class="w"> </span>push<span class="w">      </span><span class="c1"># 上传代码到仓库</span>
+
+git<span class="w"> </span>status<span class="w">    </span><span class="c1"># 查看仓库当前的状态，显示有变更的文件</span>
+</pre></div>
+</div>
+<p>更多指令可以访问这里 <a class="reference external" href="https://www.runoob.com/git/git-basic-operations.html">Git指令</a></p>
+<section id="id6">
+<h3>4.作业<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>创建自己的仓库并克隆到本地</p>
+<p>2024.6.8 Shakima</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="cmake-tool.html" class="btn btn-neutral float-left" title="cmake安装和基本使用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="C%2B%2B-style-guide.html" class="btn btn-neutral float-right" title="c++代码风格规范" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024, IMCA_VISION。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

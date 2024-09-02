@@ -1,3 +1,6 @@
 sphinx
 sphinx-rtd-theme
 sphinxnotes-strike
+sphinx-autobuild
+recommonmark
+sphinx_markdown_tables

@@ -14,9 +14,7 @@ release = 'v1.2'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinxnotes.strike',
-                # 添加 mathjax 扩展
-              'sphinx.ext.mathjax', 
+extensions = ['sphinx.ext.mathjax', 
                 ]
 
 templates_path = ['_templates']

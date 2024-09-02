@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>必要的知识背景 &mdash; IMCA-VISION_DOCUMENTATION v1.2 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=7fb3a1ff"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=beaddf03"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="对静态系统进行估计" href="a-b-g-filter_1.html" />
+    <link rel="prev" title="卡尔曼滤波" href="../kalman_filter.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            IMCA-VISION_DOCUMENTATION
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../root/introduction-tutorial.html">教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../base-learning.html">入门</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../advanced-teaching.html">进阶</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../install-opencv.html">OpenCV基本使用</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../kalman_filter.html">卡尔曼滤波</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">必要的知识背景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="a-b-g-filter_1.html">对静态系统进行估计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="a-b-g-filter_2.html">匀速运动系统进行估计</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../root/quick-start.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../root/ros-co-simulation.html">ros联合仿真</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">IMCA-VISION_DOCUMENTATION</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../root/introduction-tutorial.html">教程</a></li>
+          <li class="breadcrumb-item"><a href="../../advanced-teaching.html">进阶</a></li>
+          <li class="breadcrumb-item"><a href="../kalman_filter.html">卡尔曼滤波</a></li>
+      <li class="breadcrumb-item active">必要的知识背景</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>必要的知识背景<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>本节内容只是很表面的介绍了一下各个概念。</p>
+<section id="id2">
+<h2>均值和期望<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p><strong>均值</strong> 和 <strong>期望</strong> 是密切相关但有所不同的概念。</p>
+<section id="id3">
+<h3>均值<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>均值是一组数据中各数据之和除以数据的个数。在概率论中，对于一组数据 <span class="math notranslate nohighlight">\(\{x_1, x_2, \ldots, x_n\}\)</span>
+每个取值的概率分别为 <span class="math notranslate nohighlight">\(\{p_1, p_2, \ldots, p_n\}\)</span> 均值可表示为:</p>
+<div class="math notranslate nohighlight">
+\[\mu = \sum_{n=1}^{N} x_n \cdot p_n\]</div>
+<p>举个例子，对于一组有四个数的数据集 <span class="math notranslate nohighlight">\(\{1, 2, 5, 6\}\)</span> 求其均值，每个数据出现的概率相同都为 <span class="math notranslate nohighlight">\(\frac{1}{4}\)</span> 均值可写成:</p>
+<div class="math notranslate nohighlight">
+\[X =\mu = \sum_{n=1}^{4} x_n \cdot p_n =\frac{1}{4}(1+2+5+6)\]</div>
+<p>由于数据是确定的所以我们可以直接求解出结果。</p>
+</section>
+<section id="id4">
+<h3>期望<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>期望是随机变量的加权平均值，反映了随机变量的平均取值。</p>
+<p>什么是随机变量呢，举个例子:老式台称，用它给一块钻石称重量，它自己因为精度和做工的原因，其本身是有误差的。
+你称了五次的结果为 <span class="math notranslate nohighlight">\(124.7g, 125.3g, 124.9g, 125.1g, 125g\)</span> 称重的结果因为误差在随机变化
+这就叫随机变量。</p>
+<p>所以期望就是对于一个量因为误差我们无法得到准确值，于是对其进行足够多的测量求平均对其准确值进行估计，而这个估计值是我们期望它达到的值。
+样本足够多估计值就会逼近真实值。</p>
+<p>如果 <span class="math notranslate nohighlight">\(X\)</span> 是离散型，求其期望：</p>
+<div class="math notranslate nohighlight">
+\[E[X] = \sum_{i=1}^{N} x_i p_i(X=x)\]</div>
+<p>如果 <span class="math notranslate nohighlight">\(X\)</span> 是一个连续型随机变量，其概率分布函数为
+<span class="math notranslate nohighlight">\(f(x)\)</span> ,则期望值 <span class="math notranslate nohighlight">\(E[X]\)</span> 求其期望：</p>
+<div class="math notranslate nohighlight">
+\[E[X] = \int_{-\infty}^{\infty} x f(x) \, dx\]</div>
+<p>均值通常使用希腊字母 μ 来表示。字母 E 通常表示期望。</p>
+</section>
+</section>
+<section id="id5">
+<h2>方差和标准差<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>方差和标准差是描述数据集 <strong>分散程度</strong> 的两个重要统计指标。</p>
+<p>方差是数据集中的每个数据点与均值之间差异的平方的平均值。对于一组数据 <span class="math notranslate nohighlight">\(\{x_1, x_2, \ldots, x_n\}\)</span> 求其方差:</p>
+<div class="math notranslate nohighlight">
+\[\sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2\]</div>
+<p>其标准差则为：</p>
+<div class="math notranslate nohighlight">
+\[\sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2}\]</div>
+<p>还是那一块钻石，其真实值是 <span class="math notranslate nohighlight">\(125g\)</span> 你测量了5次的结果为 <span class="math notranslate nohighlight">\(124.7g, 125.3g, 124.9g, 125.1g, 125g\)</span> 现在你能求出
+它的方差和标准差吗。</p>
+<p>通常我们想要求解一个数据集的方差如果他的元素数目很少我们可以将全部数据纳入到公式求解，
+但如果数据集很大还这样求解会耗费很对时间。我们可以取足够的样本，对样本求解以近似表示完整数据集</p>
+<p>如果我们想求取全国所有人身高的均值和方差。我们也可以通过收集一个量足够大的样本集。根据这个样本集对全国人民身高的均值和方差进行估计。</p>
+<p>但是，从部分样本对真实方差进行估计的方程和从全量样本进行方差计算的方程略有不同。求和后的归一化系数是N−1，而并非 N：</p>
+<div class="math notranslate nohighlight">
+\[\sigma ^{2}= \frac{1}{N-1} \sum _{i=1}^{N} \left( x_{i}-  \mu  \right) ^{2}\]</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这个 <span class="math notranslate nohighlight">\(\frac{1}{N-1}\)</span> 系数称为贝塞尔校正。</p>
+</div>
+</section>
+<section id="id6">
+<h2>正态分布<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>自然界许多现象都遵循 正态分布。正态分布又称为 高斯分布，其表达式如下：</p>
+<div class="math notranslate nohighlight">
+\[f \left( x; \mu , \sigma ^{2} \right) = \frac{1}{\sqrt[]{2 \pi  \sigma ^{2}}}e^{\frac{- \left( x- \mu  \right) ^{2}}{2 \sigma ^{2}}}\]</div>
+<p>其函数图像（高斯曲线）又被称为正态分布的 概率密度函数。</p>
+<p>下表描述了三个不同城市A、B和C里披萨外卖送达时间的概率密度函数。</p>
+<a class="reference internal image-reference" href="../../../_images/1.png"><img alt="../../../_images/1.png" src="../../../_images/1.png" style="width: 600px;" /></a>
+<p>这个图描述了三个不同城市A、B和C里外卖送达时间的概率密度函数。</p>
+<ul class="simple">
+<li><p>在A城，平均送达时间为30分钟，标准差为5分钟。</p></li>
+<li><p>在B城，平均送达时间为40分钟，标准差为5分钟。</p></li>
+<li><p>在C城，平均送达时间为30分钟，标准差为10分钟。</p></li>
+</ul>
+<p>可以看到A城和B城的高斯曲线的形状是一样的，但是其中心对称轴位置不同。这表明在A城点披萨比在B城要平均少等待10分钟，但两座城市里送达时间的散布是差不多的。</p>
+<p>还可以看到A城和C城的高斯曲线中心对称轴位置相同，但是形状不同。因此尽管平均送达时间一样，但散布不同。</p>
+<a class="reference internal image-reference" href="../../../_images/2.png"><img alt="../../../_images/2.png" src="../../../_images/2.png" style="width: 600px;" /></a>
+<p>这个图列出了正态分布的曲线围成面积的比例情况：</p>
+<ul class="simple">
+<li><p>A城里68.26%的送达时间落在 <span class="math notranslate nohighlight">\(\mu \pm \sigma\)</span> 区间（25-35分钟）</p></li>
+<li><p>A城里95.44%的送达时间落在 <span class="math notranslate nohighlight">\(\mu \pm 2\sigma\)</span> 区间（20-40分钟）</p></li>
+<li><p>A城里99.74%的送达时间落在 <span class="math notranslate nohighlight">\(\mu \pm 3\sigma\)</span> 区间内（15-45分钟）</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../kalman_filter.html" class="btn btn-neutral float-left" title="卡尔曼滤波" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="a-b-g-filter_1.html" class="btn btn-neutral float-right" title="对静态系统进行估计" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024, IMCA_VISION。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>对静态系统进行估计 &mdash; IMCA-VISION_DOCUMENTATION v1.2 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=7fb3a1ff"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=beaddf03"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="匀速运动系统进行估计" href="a-b-g-filter_2.html" />
+    <link rel="prev" title="必要的知识背景" href="background.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            IMCA-VISION_DOCUMENTATION
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../root/introduction-tutorial.html">教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../base-learning.html">入门</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../advanced-teaching.html">进阶</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../install-opencv.html">OpenCV基本使用</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../kalman_filter.html">卡尔曼滤波</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="background.html">必要的知识背景</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">对静态系统进行估计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="a-b-g-filter_2.html">匀速运动系统进行估计</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../root/quick-start.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../root/ros-co-simulation.html">ros联合仿真</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">IMCA-VISION_DOCUMENTATION</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../root/introduction-tutorial.html">教程</a></li>
+          <li class="breadcrumb-item"><a href="../../advanced-teaching.html">进阶</a></li>
+          <li class="breadcrumb-item"><a href="../kalman_filter.html">卡尔曼滤波</a></li>
+      <li class="breadcrumb-item active">对静态系统进行估计</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>对静态系统进行估计<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>静态系统就是，在相当时间内其本身属性（状态）不会随着时间的变化而变化。</p>
+<p>我们再次把那颗125克的钻石拿出来，钻石是世界上最坚硬的自然物质，假设其重量125克从现在起永远不会发生变化了。
+我们再次给他称重，这次我们不用老式台称了，换一个最先进的称，它理论上没有系统误差（在没有其他干扰的情况下是准确的）
+。但是不出意外的话还是出意外了，我们在称的时候受到了微小的干扰（即随机噪声），所以我们的测量值是不准确的。</p>
+<p>为了能逼近到他的准确值，我们对它进行多次测量，取平均值</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{n,n}= \frac{1}{n} \left( z_{1}+ z_{2}+ \ldots + z_{n-1}+ z_{n} \right) = \frac{1}{n} \sum _{i=1}^{n} \left( z_{i} \right)\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span>———                   钻石的准确重量</p></li>
+<li><p><span class="math notranslate nohighlight">\(z_{n}\)</span>———               n时刻钻石的测量值</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n,n}\)</span> ———      使用n时刻的测量值 <span class="math notranslate nohighlight">\(z_{n}\)</span>，对n时刻 <span class="math notranslate nohighlight">\(x\)</span> 的估计值</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n+1,n}\)</span> ———    n时刻对未来时刻(n+1时刻) <span class="math notranslate nohighlight">\(x\)</span> 的预测值</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n-1,n-1}\)</span>———   使用n-1时刻的测量值 <span class="math notranslate nohighlight">\(z_{n-1}\)</span> 对n-1时刻， <span class="math notranslate nohighlight">\(x\)</span> 的估计值</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{x}_{n,n-1}\)</span>———     在n-1时刻对n时刻状态的预测，对n时刻来说是它的先验估计</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>变量上的尖号符号代表这是一个对该变量的估计值,。<span class="math notranslate nohighlight">\(\hat{x}\)</span> 代表对 <span class="math notranslate nohighlight">\(x\)</span> 的估计。</p>
+</div>
+<p>讲道理来说，钻石的重量是不变的，它n时刻的重量是等于n+1时刻的重量的。数学建模是：</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{n+1,n}= \hat{x}_{n,n}\]</div>
+<p>对于计算机而言，利用平均值求解逼近真实值，是没问题的。但是每次我们新称重一下传给计算机后，计算机都要将最新的
+数据储存下来，重新将所有数据加在一起求解平均值，显然对计算机算力的消耗是巨大且浪费的</p>
+<p>我们只需要储存上一个时刻的估计值就好，这一个时刻测量完后将其覆盖更新即可</p>
+<ul class="simple">
+<li><p>根据当前的测量和先验估计，估计当前的状态。</p></li>
+<li><p>根据当前的状态估计以及系统动态模型，进行下一时刻的预测。</p></li>
+</ul>
+<p>将求平均的表达式进行等效变换</p>
+<p><span class="math notranslate nohighlight">\(\hat{x}_{n,n}= \frac{1}{n} \sum _{i=1}^{n} \left( z_{i} \right)\)</span>———求平均公式</p>
+<p><span class="math notranslate nohighlight">\(= \frac{1}{n} \left(  \sum _{i=1}^{n-1} \left( z_{i} \right)  + z_{n} \right)\)</span>———前n-1个测量的和再加上最近一次的测量值整体除以n</p>
+<p><span class="math notranslate nohighlight">\(= \frac{1}{n} \sum _{i=1}^{n-1} \left( z_{i} \right) + \frac{1}{n} z_{n}\)</span>———<span class="math notranslate nohighlight">\(\frac{1}{n}\)</span> 乘进去展开</p>
+<p><span class="math notranslate nohighlight">\(= \frac{1}{n}\frac{n-1}{n-1} \sum _{i=1}^{n-1} \left( z_{i} \right) + \frac{1}{n} z_{n}\)</span>———给求和项同时乘以并除以n-1</p>
+<p><span class="math notranslate nohighlight">\(= \frac{n-1}{n}\color{#00008b}{\frac{1}{n-1} \sum _{i=1}^{n-1} \left( z_{i} \right)} + \frac{1}{n} z_{n}\)</span>———着色项就是上一时刻的估计值</p>
+<p><span class="math notranslate nohighlight">\(= \frac{n-1}{n}\color{#00008b}{\hat{x}_{n-1,n-1}} + \frac{1}{n} z_{n}\)</span>———-把求和项用上一时刻的估计值替换掉</p>
+<p><span class="math notranslate nohighlight">\(= \hat{x}_{n-1,n-1}- \frac{1}{n}\hat{x}_{n-1,n-1}+ \frac{1}{n} z_{n}\)</span>———<span class="math notranslate nohighlight">\(\hat{x}_{n-1,n-1}\)</span> 乘进 <span class="math notranslate nohighlight">\(\frac{n-1}{n}\)</span> 的分子</p>
+<p><span class="math notranslate nohighlight">\(= \hat{x}_{n-1,n-1}+ \frac{1}{n} \left( z_{n}- \hat{x}_{n-1,n-1} \right)\)</span>———提出 <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span></p>
+<p>之前我们说了，讲道理来说，钻石的重量是不变的，它n时刻的重量是等于n+1时刻的重量的。</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{n,n-1}= \hat{x}_{n-1,n-1}\]</div>
+<p>对当前时刻状态 <span class="math notranslate nohighlight">\(\hat{x}_{n,n}\)</span> 的估计可以写成</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{n,n} =  \hat{x}_{n,n-1} + \frac{1}{n} \left( z_{n} - \hat{x}_{n,n-1} \right)\]</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>上面的式子即为卡尔曼滤波的五个方程之一。称为状态更新方程。 将系数 <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span> 用 <span class="math notranslate nohighlight">\(K_{n}\)</span> 替换。
+在卡尔曼滤波中这个系数是一个重要的概念 <strong>卡尔曼增益</strong> 它随着n的迭代而迭代。</p>
+<p><span class="math notranslate nohighlight">\(\left( z_{n}- \hat{x}_{n,n-1} \right)\)</span> 叫更新量</p>
+</div>
+<section id="id2">
+<h2>实例推导<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>下面我们会以钻石为例实际验证一下上面的估计公式，或者说算法。</p>
+<p>卡尔曼滤波需要一个初始估计作为初始值，这个值可以非常粗略，甚至是0。</p>
+<section id="id3">
+<h3>初始化（第0次迭代）<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>买钻石的时候我们被告知它125g，我们就拿着个作为初始值。仅在滤波器初始化时使用一次，后续迭代不再需要这个值。</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{0,0}=125g\]</div>
+<p><strong>预测</strong></p>
+<p>模型是静态的，对下一个时刻的预测就等于此时的初始化估计值。</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{1,0} = \hat{x}_{0,0}=125g\]</div>
+</section>
+<section id="id4">
+<h3>第1次迭代<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>第一步,称重：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[z_{1}= 124.7g\]</div>
+<ul class="simple">
+<li><p>第二步，计算增益，<span class="math notranslate nohighlight">\(K_{n} = \frac{1}{n}\)</span> 。所以：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[K_{n} = \frac{1}{1} = 1\]</div>
+<p>用状态更新方程计算当前的估计值:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{1,1}= \hat{x}_{1,0}+  K_{1} \left( z_{1}- \hat{x}_{1,0} \right) = 125+1 \left( 124.7-125 \right) = 124.7g\]</div>
+<ul class="simple">
+<li><p>第三步</p></li>
+</ul>
+<p>模型是静态的，钻石的重量应该是不变的，对下一时刻的预测应该等于此时的估计：</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{2,1}= \hat{x}_{1,1}=124.7g\]</div>
+</section>
+<section id="id5">
+<h3>第2次迭代<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>上一时刻的预测值成为了这一时刻的先验估计</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{2,1}=124.7g\]</div>
+<ul class="simple">
+<li><p>第1步,第二次称重：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[z_{2}= 125.3g\]</div>
+<ul class="simple">
+<li><p>第2步,计算增益：</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[z_{2}= 125.3g\]</div>
+<p>计算估计值：</p>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{2,2}= \hat{x}_{2,1}+  K_{2} \left( z_{2}- \hat{x}_{2,1} \right) =124.7+\frac{1}{2} \left( 125.3-124.7 \right) = 125g\]</div>
+<ul class="simple">
+<li><p>第3步</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{3,2}= \hat{x}_{2,2}=125g\]</div>
+</section>
+<section id="id6">
+<h3>第三次迭代<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}z_{3}= 124.9g~~~~~~~~~~~~~~~~~~~~~~~~~~  K_{3}= \frac{1}{3}\\\hat{x}_{3,3}=~ 125+\frac{1}{3} \left( 124.9-125 \right) =124.97g\end{aligned}\end{align} \]</div>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{4,3}=124.97g\]</div>
+</section>
+<section id="id7">
+<h3>第4次迭代<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}z_{4}= 125.1g~~~~~~~~~~~~~~~~~~~~~~~~~~  K_{4}= \frac{1}{4}\\\hat{x}_{4,4}=~ 124.97+\frac{1}{4} \left( 125.1-124.97 \right) =125.0025g\end{aligned}\end{align} \]</div>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{5,4}=125.0025g\]</div>
+</section>
+<section id="id8">
+<h3>第5次迭代<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}z_{5}= 125g~~~~~~~~~~~~~~~~~~~~~~~~~~  K_{5}= \frac{1}{5}\\\hat{x}_{5,5}=~ 125+\frac{1}{5} \left( 125-125.0025\right) =125.0005g\end{aligned}\end{align} \]</div>
+<div class="math notranslate nohighlight">
+\[\hat{x}_{6,5}=125.0005\]</div>
+<p>明显可以看到随着迭代的次数增加，我们得到的预测值越来越接近真实值了。</p>
+</section>
+</section>
+<section id="id9">
+<h2>作业<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<p>将上述步骤以编程的方式实现，并将真实值，估计值，测量值，绘制成图表。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="background.html" class="btn btn-neutral float-left" title="必要的知识背景" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="a-b-g-filter_2.html" class="btn btn-neutral float-right" title="匀速运动系统进行估计" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024, IMCA_VISION。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

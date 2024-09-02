@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cmake安装和基本使用 &mdash; IMCA-VISION_DOCUMENTATION v1.2 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=7fb3a1ff"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Git和github" href="git-and-github.html" />
+    <link rel="prev" title="IDE的安装和配置" href="the-IDE.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            IMCA-VISION_DOCUMENTATION
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../root/introduction-tutorial.html">教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../base-learning.html">入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ubuntu-install.html">Ubuntu (22.04版本)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start-in-ubuntu.html">开始使用Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPN.html">关于vpn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="the-IDE.html">IDE的安装和配置</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">cmake安装和基本使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="git-and-github.html">Git和github</a></li>
+<li class="toctree-l3"><a class="reference internal" href="C%2B%2B-style-guide.html">c++代码风格规范</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced-teaching.html">进阶</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../root/quick-start.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../root/ros-co-simulation.html">ros联合仿真</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">IMCA-VISION_DOCUMENTATION</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../root/introduction-tutorial.html">教程</a></li>
+          <li class="breadcrumb-item"><a href="../base-learning.html">入门</a></li>
+      <li class="breadcrumb-item active">cmake安装和基本使用</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cmake">
+<h1>cmake安装和基本使用<a class="headerlink" href="#cmake" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>1安装cmake<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>1.1.指令安装<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>cmake<span class="w">  </span><span class="c1">#下载版本可能不是最新的</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>1.2.源码安装<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>第一步：卸载原来的cmake版本:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>cmake
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>第二步：去 <a class="reference external" href="https://cmake.org/download/">cmake官网</a> 下载linux版本源码安装包</p></li>
+<li><p>第三步：在cmake源码所在文件夹中打开命令终端，解压文件</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>-zxv<span class="w"> </span>-f<span class="w"> </span>cmake-x.x.x.tar.gz<span class="w">  </span><span class="c1">#&#39;x.x.x.&#39; 是对应的版本</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>第四步：进入解压后的cmake文件，执行：</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bootstrap
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>第五步：编译构建</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>第六步：安装</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>第七步：验证</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--version
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>2cmake的使用<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="id5">
+<h3>2.1.为什么使用cmake<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>如果你学习了前面ubuntu的基本学习可以使用指令 <code class="docutils literal notranslate"><span class="pre">g++</span> <span class="pre">main.cpp</span></code> 对c/c++文件进行单文件编译，可以将main.cpp中所写的代码编译生成默认文件名为a.out的可执行文件</p>
+<p>而在大型工程项目中，程序不可能仅由单一的源文件编写而成。涉及到多文件编译时，通常就会涉及到一个名词“工程”。
+简单的，在linux环境下，我们可以使用命令 <code class="docutils literal notranslate"><span class="pre">g++</span> <span class="pre">src1.cpp</span> <span class="pre">src2.cpp</span> <span class="pre">...</span></code> 来将多个源文件编译成一个可执行文件。</p>
+<p>但在实际的工程中，往往并不是仅仅将多个源文件编译到一起就可以，可能还会涉及其他问题。比如：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>外部依赖项：需要将第三方软件库的头文件目录添加到编译期的头文件搜索目录中，以找到第三方库的头文件；
+需要将第三方库的链接库（如果有的话）链接到程序中</p></li>
+<li><p>不同源文件需要不同的编译配置。如，有的源文件可能需要特殊的编译优化等级，而其他的不需要；有的源文件需要链接到外部库，而其他的不需要；
+有的源文件需要添加外部库的头文件目录，而其他的不需要。</p></li>
+</ul>
+</div></blockquote>
+<p>为解决上述问题，CMake工具顺应而生。它可以完成的功能包括：多文件编译；管理外部依赖；代码模块化；编译结果安装等。</p>
+</section>
+<section id="id6">
+<h3>2.2.初步使用cmake构建工具<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>学完 <strong>‘clang’</strong> 的配置后你已经新建了一个文件夹用来存放你的C++文件，在里面新建一个文件夹命名为example，使用vscode打开，用你学到的方法新建工程</p>
+<a class="reference internal image-reference" href="../../_images/17.png"><img alt="../../_images/17.png" src="../../_images/17.png" style="width: 600px;" /></a>
+<p>可以看到文件目录下已经新建好了一个 <strong>CMakeLists.txt</strong> 文件</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.0.0</span><span class="p">)</span>
+<span class="c">#cmake最小版本</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">hello_IMCA</span><span class="w"> </span><span class="s">VERSION</span><span class="w"> </span><span class="s">0.1.0</span><span class="w"> </span><span class="s">LANGUAGES</span><span class="w"> </span><span class="s">C</span><span class="w"> </span><span class="s">CXX</span><span class="p">)</span>
+<span class="c">#项目名称“hello_IMCA&quot;</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">hello_IMCA</span><span class="w"> </span><span class="s">main.cpp</span><span class="p">)</span>
+<span class="c">#生成可执行文件，将“main.cpp&quot;文件生成名为“hello_IMCA“的可执行文件</span>
+</pre></div>
+</div>
+<p>以上就是CMakeLists文件的最小形式了，这里给出一个链接去 <a class="reference external" href="https://blog.csdn.net/kai_zone/article/details/82656964">进一步学习cmake</a></p>
+</section>
+<section id="id7">
+<h3>2.3.练习<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>访问（克隆） <a class="reference external" href="https://blog.csdn.net/kai_zone/article/details/82656964">cmake-examples的github</a> 完成里面的例子练习前四个</p>
+<p>2024.6.4 Shakima</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="the-IDE.html" class="btn btn-neutral float-left" title="IDE的安装和配置" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="git-and-github.html" class="btn btn-neutral float-right" title="Git和github" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024, IMCA_VISION。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
