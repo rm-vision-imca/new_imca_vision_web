@@ -31,7 +31,7 @@
 
 现在每台车自瞄都有自启动，如果上电后没有自瞄，``CTRL + ALT + T`` 打开终端输入以下指令
 
-.. code-block:: bash
+.. code-block:: none
 
    <del>docker attach rv_runtime_autoStart</del>
 
@@ -45,7 +45,7 @@
 
 在调试阶段视觉更多的操作是在开启foxglove下进行的，其可以图形可视化的显示出自瞄信息，在遇到自瞄甩飞、不识别装甲板、查看电控目标解算位置，或者需要参数调整等问题时打开终端输入以下指令
 
-.. code-block:: bash
+.. code-block:: none
 
    <del>
    docker start rv_runtime_fox
