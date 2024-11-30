@@ -16,8 +16,23 @@
 
 * 如果自瞄失效，或者目标常规移动命中率都极低，使用手瞄，将问题反馈给视觉
 
+2. 具体启动方法
+--------------
 
-2. 关于调试
+* 1. 先为实车装上电池，上电，观察nuc是否正常上电
+* 2. 等待nuc开机完毕，若自启动正常，则跳到7
+* 3. 连接视觉组专用调车wifi，rujie开头的那个
+* 4.用nomachine远程桌面连接到实车的nuc，找到相应的工作目录（这里要先拿到实车nuc对应的ip地址或自行判断是否连接到对应的nuc）
+* 5.在该目录打开终端，输入bash rv_start.sh
+* 6.等待启动完毕
+* 7.用microusb线连接实车遥控，并将遥控左拨杆拉到最上方PC模式（拨到中间是RC模式，即遥控器模式）
+* 8.打开robomaster选手客户端
+* 9.观察靶车颜色和自身颜色是否相反，如果不是则调靶车裁判系统，使其变为相反色
+* 10.回到robomaster选手客户端，控制鼠标使实车视角正对靶车的装甲板
+* 11.鼠标右键使用自瞄，看是否能正常将枪管甩到正对装甲板的位置
+
+
+3. 调试阶段
 -------------
 .. note::
 
@@ -26,36 +41,22 @@
    所以也建议电控同学教会视觉同学对于遥控器或者客户端控制机器人的操作，以方便电控同学不在视觉也能对自瞄在车上进行调试。
 
 
-2.1. 关于自瞄的启动
-~~~~~~~~~~~~~~~~~~~
+* 1.在远程桌面相应的工作目录终端输入bash fox.sh启动fox服务端
+* 2.Foxglove Studio中打开连接，输入ws://实车ip地址:8765
+* 3.Foxglove内部可视化调试具体用法自行搜索
+* 4.接着按照自己的思路调节参数或代码
 
-现在每台车自瞄都有自启动，如果上电后没有自瞄，``CTRL + ALT + T`` 打开终端输入以下指令
 
-.. code-block:: bash
-
-   #docker attach rv_runtime_autoStart</del
-
-   cd ${workspace} # workspace改为ros2代码存放根目录
-   bash rv.start.sh 
-
-你将在终端看到串口的DEBUG信息，是不断刷新的绿色消息则自瞄启动正常
-
-2.2. 关于foxglove可视化
+3.1. 关于foxglove可视化
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 在调试阶段视觉更多的操作是在开启foxglove下进行的，其可以图形可视化的显示出自瞄信息，在遇到自瞄甩飞、不识别装甲板、查看电控目标解算位置，或者需要参数调整等问题时打开终端输入以下指令
 
 .. code-block:: bash
-
-   
-   #docker start rv_runtime_fox
-   #docker attach rv_runtime_fox
-   #有可能存在rv_runtime_fox不存在的情况，因为目前视觉关于这个的命名并未统一
-   #可以使用以下指令查看具体名字
-   #docker ps -a
    
    #在项目文件夹内内打开终端
    source install/setup.bash
+   bash fox.sh #如果没有这个文件则运行下面这行
    ros2 launch foxglove_bridge foxglove_bridge_launch.xml 
 
 
@@ -97,6 +98,7 @@
 
 2024.4.10 Shakima first commit
 2024.9.1 123456dfg changed
+2024.11.30 123456dfg updated
 
 
 
