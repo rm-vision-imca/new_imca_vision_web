@@ -95,18 +95,9 @@
 <section id="id3">
 <h2>2. 具体启动方法<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><ol class="arabic simple">
-<li><p>先为实车装上电池，上电，观察nuc是否正常上电</p></li>
-</ol>
-</li>
-<li><ol class="arabic simple" start="2">
-<li><p>等待nuc开机完毕，若自启动正常，则跳到7</p></li>
-</ol>
-</li>
-<li><ol class="arabic simple" start="3">
-<li><p>连接视觉组专用调车wifi，rujie开头的那个</p></li>
-</ol>
-</li>
+<li><p>1.先为实车装上电池，上电，观察nuc是否正常上电</p></li>
+<li><p>2.等待nuc开机完毕，若自启动正常，则跳到7</p></li>
+<li><p>3.连接视觉组专用调车wifi，rujie开头的那个</p></li>
 <li><p>4.用nomachine远程桌面连接到实车的nuc，找到相应的工作目录（这里要先拿到实车nuc对应的ip地址或自行判断是否连接到对应的nuc）</p></li>
 <li><p>5.在该目录打开终端，输入bash rv_start.sh</p></li>
 <li><p>6.等待启动完毕</p></li>
@@ -118,7 +109,7 @@
 </ul>
 </section>
 <section id="id4">
-<h2>3. 调试阶段<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<h2>1. 调试阶段<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>有时视觉自瞄组成员会不在实验室或者出现问题看似是视觉BUG实则不然的情况，所以我们希望电控同学能掌握一些基本的调试方法，用以解决或者正确定位问题，能够独立进行调试，从而提高效率。有时就是几个指令，观察一下可视化的事情，根本不会涉及到视觉代码相关的层面，也可避免出现人等人的现象。</p>
@@ -164,9 +155,11 @@ ros2<span class="w"> </span>launch<span class="w"> </span>foxglove_bridge<span c
 后进入robomaster选手客户端使得云台pitch固定到绝对0点，
 后用其余工具测量枪管上的pitch角，如果不为0则将其测得的误差放进rpy中的第二个参数，
 以此迭代出正确的参数。</p>
-<p>2024.4.10 Shakima first commit
-2024.9.1 123456dfg changed
-2024.11.30 123456dfg updated</p>
+<ul class="simple">
+<li><p>2024.4.10 Shakima first commit</p></li>
+<li><p>2024.9.1 123456dfg changed</p></li>
+<li><p>2024.11.30 123456dfg updated</p></li>
+</ul>
 </section>
 </section>
 </section>
