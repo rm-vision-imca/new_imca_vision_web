@@ -23,7 +23,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="能量机关自瞄使用说明" href="runeaim-guide.html" />
-    <link rel="prev" title="快速入门" href="../root/quick-start.html" /> 
+    <link rel="prev" title="使用说明" href="../root/quick-start.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,7 +47,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../root/introduction-tutorial.html">教程</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../root/quick-start.html">快速入门</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../root/quick-start.html">使用说明</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">自瞄使用说明</a></li>
 <li class="toctree-l2"><a class="reference internal" href="runeaim-guide.html">能量机关自瞄使用说明</a></li>
 </ul>
@@ -69,7 +69,7 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../root/quick-start.html">快速入门</a></li>
+          <li class="breadcrumb-item"><a href="../root/quick-start.html">使用说明</a></li>
       <li class="breadcrumb-item active">自瞄使用说明</li>
       <li class="wy-breadcrumbs-aside">
       </li>
@@ -93,34 +93,49 @@
 </ul>
 </section>
 <section id="id3">
-<h2>2. 关于调试<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<h2>2. 具体启动方法<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>先为实车装上电池，上电，观察nuc是否正常上电</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>等待nuc开机完毕，若自启动正常，则跳到7</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>连接视觉组专用调车wifi，rujie开头的那个</p></li>
+</ol>
+</li>
+<li><p>4.用nomachine远程桌面连接到实车的nuc，找到相应的工作目录（这里要先拿到实车nuc对应的ip地址或自行判断是否连接到对应的nuc）</p></li>
+<li><p>5.在该目录打开终端，输入bash rv_start.sh</p></li>
+<li><p>6.等待启动完毕</p></li>
+<li><p>7.用microusb线连接实车遥控，并将遥控左拨杆拉到最上方PC模式（拨到中间是RC模式，即遥控器模式）</p></li>
+<li><p>8.打开robomaster选手客户端</p></li>
+<li><p>9.观察靶车颜色和自身颜色是否相反，如果不是则调靶车裁判系统，使其变为相反色</p></li>
+<li><p>10.回到robomaster选手客户端，控制鼠标使实车视角正对靶车的装甲板</p></li>
+<li><p>11.鼠标右键使用自瞄，看是否能正常将枪管甩到正对装甲板的位置</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>3. 调试阶段<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
 <p>有时视觉自瞄组成员会不在实验室或者出现问题看似是视觉BUG实则不然的情况，所以我们希望电控同学能掌握一些基本的调试方法，用以解决或者正确定位问题，能够独立进行调试，从而提高效率。有时就是几个指令，观察一下可视化的事情，根本不会涉及到视觉代码相关的层面，也可避免出现人等人的现象。</p>
 <p>所以也建议电控同学教会视觉同学对于遥控器或者客户端控制机器人的操作，以方便电控同学不在视觉也能对自瞄在车上进行调试。</p>
 </div>
-<section id="id4">
-<h3>2.1. 关于自瞄的启动<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
-<p>现在每台车自瞄都有自启动，如果上电后没有自瞄，<code class="docutils literal notranslate"><span class="pre">CTRL</span> <span class="pre">+</span> <span class="pre">ALT</span> <span class="pre">+</span> <span class="pre">T</span></code> 打开终端输入以下指令</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#docker attach rv_runtime_autoStart&lt;/del</span>
-
-<span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">workspace</span><span class="si">}</span><span class="w"> </span><span class="c1"># workspace改为ros2代码存放根目录</span>
-bash<span class="w"> </span>rv.start.sh
-</pre></div>
-</div>
-<p>你将在终端看到串口的DEBUG信息，是不断刷新的绿色消息则自瞄启动正常</p>
-</section>
+<ul class="simple">
+<li><p>1.在远程桌面相应的工作目录终端输入bash fox.sh启动fox服务端</p></li>
+<li><p>2.Foxglove Studio中打开连接，输入ws://实车ip地址:8765</p></li>
+<li><p>3.Foxglove内部可视化调试具体用法自行搜索</p></li>
+<li><p>4.接着按照自己的思路调节参数或代码</p></li>
+</ul>
 <section id="foxglove">
-<h3>2.2. 关于foxglove可视化<a class="headerlink" href="#foxglove" title="Link to this heading"></a></h3>
+<h3>3.1. 关于foxglove可视化<a class="headerlink" href="#foxglove" title="Link to this heading"></a></h3>
 <p>在调试阶段视觉更多的操作是在开启foxglove下进行的，其可以图形可视化的显示出自瞄信息，在遇到自瞄甩飞、不识别装甲板、查看电控目标解算位置，或者需要参数调整等问题时打开终端输入以下指令</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#docker start rv_runtime_fox</span>
-<span class="c1">#docker attach rv_runtime_fox</span>
-<span class="c1">#有可能存在rv_runtime_fox不存在的情况，因为目前视觉关于这个的命名并未统一</span>
-<span class="c1">#可以使用以下指令查看具体名字</span>
-<span class="c1">#docker ps -a</span>
-
-<span class="c1">#在项目文件夹内内打开终端</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#在项目文件夹内内打开终端</span>
 <span class="nb">source</span><span class="w"> </span>install/setup.bash
+bash<span class="w"> </span>fox.sh<span class="w"> </span><span class="c1">#如果没有这个文件则运行下面这行</span>
 ros2<span class="w"> </span>launch<span class="w"> </span>foxglove_bridge<span class="w"> </span>foxglove_bridge_launch.xml
 </pre></div>
 </div>
@@ -129,7 +144,7 @@ ros2<span class="w"> </span>launch<span class="w"> </span>foxglove_bridge<span c
 <div><a class="reference internal image-reference" href="../_images/110.png"><img alt="../_images/110.png" src="../_images/110.png" style="width: 600px;" /></a>
 </div></blockquote>
 <p>其中``serial/receive``为电控发给视觉的imu以及识别所需参数</p>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a>armor_solver/cmd_gimbal``为armor_solver节点对识别到二维坐标处理完成后发给电控的云台绝对角度</p>
+<p><code class="docutils literal notranslate"><span class="pre">armor_solver/cmd_gimbal</span></code> 为armor_solver节点对识别到二维坐标处理完成后发给电控的云台绝对角度</p>
 <p><code class="docutils literal notranslate"><span class="pre">tracker/target</span></code> 是视觉滤波结果,调试时具有重要参考意义</p>
 <p><code class="docutils literal notranslate"><span class="pre">三维</span></code> 这个窗口是对自己和目标的可视化建模，两个坐标系分别是 <code class="docutils literal notranslate"><span class="pre">odom</span></code> 坐标系(在最下面)， <code class="docutils literal notranslate"><span class="pre">相机</span></code> 坐标系(在上面)，四块装甲板是目标装甲板位置。视觉发送的所有坐标都在”odom”坐标系下。</p>
 <div class="admonition note">
@@ -137,8 +152,8 @@ ros2<span class="w"> </span>launch<span class="w"> </span>foxglove_bridge<span c
 <p>此时晃动云台，三维窗口下显示的四块装甲板的位置应不发生改变，即其位置是在odom坐标系下定义的，应不随相机坐标系的变化而变化</p>
 </div>
 </section>
-<section id="id7">
-<h3>2.3. 关于打击静态目标，距离不同打高打低的问题<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<section id="id5">
+<h3>2.3. 关于打击静态目标，距离不同打高打低的问题<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <p>修改pc上的home目录下的 <code class="docutils literal notranslate"><span class="pre">/{workspace}/src/rm_bringup/config/launch_params.yaml</span></code> 与 <code class="docutils literal notranslate"><span class="pre">/ros_ws/src/rm_gimbal_description/urdf</span>
 <span class="pre">/rm_gimbal.urdf.xacro</span></code> 路径内的”rpy”部分为 “0 0 0” 如下图</p>
 <blockquote>
@@ -150,7 +165,8 @@ ros2<span class="w"> </span>launch<span class="w"> </span>foxglove_bridge<span c
 后用其余工具测量枪管上的pitch角，如果不为0则将其测得的误差放进rpy中的第二个参数，
 以此迭代出正确的参数。</p>
 <p>2024.4.10 Shakima first commit
-2024.9.1 123456dfg changed</p>
+2024.9.1 123456dfg changed
+2024.11.30 123456dfg updated</p>
 </section>
 </section>
 </section>
@@ -159,7 +175,7 @@ ros2<span class="w"> </span>launch<span class="w"> </span>foxglove_bridge<span c
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="../root/quick-start.html" class="btn btn-neutral float-left" title="快速入门" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../root/quick-start.html" class="btn btn-neutral float-left" title="使用说明" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
         <a href="runeaim-guide.html" class="btn btn-neutral float-right" title="能量机关自瞄使用说明" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
